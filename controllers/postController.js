@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 exports.getAllPost = async (req, res, next) => {
     try {
-        const post = await Post.find({}).populate('author');
+        const post = await Post.find({}).populate('author','name').select('content createdAt');
         res.status(200).json({
             status: 'Success',
             results: post.length,
